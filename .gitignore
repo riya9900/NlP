@@ -1,0 +1,45 @@
+# secrets / env (never commit)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# model weights / training output
+server/models/*
+!server/models/.gitkeep
+*.safetensors
+*.pt
+*.bin
+*.ckpt
+spam-xlmr.zip
+
+# node / next
+node_modules/
+.next/
+out/
+.pnpm-store/
+*.tsbuildinfo
+next-env.d.ts
+
+# notebooks
+.ipynb_checkpoints/
+
+# os / editor / tooling
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.claude/
+*.log
+npm-debug.log*

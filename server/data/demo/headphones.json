@@ -1,0 +1,1087 @@
+{
+ "product": "Aurora X1 Wireless Headphones",
+ "reviews": [
+  {
+   "id": "g34",
+   "text": "Sound quality is superb with deep bass. Mic picks up too much noise on calls.",
+   "rating": 3,
+   "language": "en",
+   "author": "user4665",
+   "is_spam": false,
+   "aspects": [
+    "sound",
+    "mic"
+   ]
+  },
+  {
+   "id": "g20",
+   "text": "Die Akkulaufzeit ist hervorragend. Die Verbindung trennt sich zufällig.",
+   "rating": 3,
+   "language": "de",
+   "author": "user6726",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g55",
+   "text": "とてもクリアでバランスの良い音です。 接続が勝手に切れます。",
+   "rating": 3,
+   "language": "ja",
+   "author": "user8848",
+   "is_spam": false,
+   "aspects": [
+    "sound",
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g30",
+   "text": "The battery lasts all week.",
+   "rating": 5,
+   "language": "en",
+   "author": "user8262",
+   "is_spam": false,
+   "aspects": [
+    "battery"
+   ]
+  },
+  {
+   "id": "g8",
+   "text": "La conexión se desconecta al azar. La calidad del micrófono es terrible. La autonomía es excelente.",
+   "rating": 3,
+   "language": "es",
+   "author": "user8301",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "mic",
+    "battery"
+   ]
+  },
+  {
+   "id": "g9",
+   "text": "Very comfortable, I wear them for hours. The battery lasts all week. Sound quality is superb with deep bass.",
+   "rating": 5,
+   "language": "en",
+   "author": "user5056",
+   "is_spam": false,
+   "aspects": [
+    "comfort",
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "g65",
+   "text": "Battery died after two days, disappointing.",
+   "rating": 1,
+   "language": "en",
+   "author": "user3270",
+   "is_spam": false,
+   "aspects": [
+    "battery"
+   ]
+  },
+  {
+   "id": "g73",
+   "text": "とてもクリアでバランスの良い音です。",
+   "rating": 5,
+   "language": "ja",
+   "author": "user9025",
+   "is_spam": false,
+   "aspects": [
+    "sound"
+   ]
+  },
+  {
+   "id": "g4",
+   "text": "Very comfortable, I wear them for hours. The battery lasts all week.",
+   "rating": 5,
+   "language": "en",
+   "author": "user9711",
+   "is_spam": false,
+   "aspects": [
+    "comfort",
+    "battery"
+   ]
+  },
+  {
+   "id": "g32",
+   "text": "Mic picks up too much noise on calls. Sound quality is superb with deep bass.",
+   "rating": 3,
+   "language": "en",
+   "author": "user4942",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "sound"
+   ]
+  },
+  {
+   "id": "g54",
+   "text": "El emparejamiento Bluetooth es instantáneo y estable.",
+   "rating": 5,
+   "language": "es",
+   "author": "user2219",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g16",
+   "text": "The microphone quality is terrible, people can't hear me. Bluetooth pairing is instant and stable. Crystal clear sound, very balanced.",
+   "rating": 4,
+   "language": "en",
+   "author": "user3645",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "bluetooth",
+    "sound"
+   ]
+  },
+  {
+   "id": "g48",
+   "text": "Die Mikrofonqualität ist schrecklich.",
+   "rating": 1,
+   "language": "de",
+   "author": "user9269",
+   "is_spam": false,
+   "aspects": [
+    "mic"
+   ]
+  },
+  {
+   "id": "g67",
+   "text": "Lightweight and the ear pads are soft. Mic picks up too much noise on calls.",
+   "rating": 3,
+   "language": "en",
+   "author": "user3741",
+   "is_spam": false,
+   "aspects": [
+    "comfort",
+    "mic"
+   ]
+  },
+  {
+   "id": "g72",
+   "text": "La autonomía es excelente. Ligeros y las almohadillas son suaves.",
+   "rating": 5,
+   "language": "es",
+   "author": "user6112",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "comfort"
+   ]
+  },
+  {
+   "id": "s1",
+   "text": "Best purchase ever!!! Highly recommend to everyone, buy now!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "user7881",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "s8",
+   "text": "Amazing amazing product, highly recommend. Buy now!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "user7493",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g36",
+   "text": "Bluetooth bricht ständig ab. Sehr bequem, ich trage sie stundenlang.",
+   "rating": 3,
+   "language": "de",
+   "author": "user2377",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g43",
+   "text": "Battery life is fantastic, easily 30 hours. Mic picks up too much noise on calls. Very comfortable, I wear them for hours.",
+   "rating": 4,
+   "language": "en",
+   "author": "user4254",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "mic",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g31",
+   "text": "Leicht und die Ohrpolster sind weich. Die Mikrofonqualität ist schrecklich.",
+   "rating": 3,
+   "language": "de",
+   "author": "user9572",
+   "is_spam": false,
+   "aspects": [
+    "comfort",
+    "mic"
+   ]
+  },
+  {
+   "id": "g25",
+   "text": "La qualité sonore est superbe avec des basses profondes. Le Bluetooth se coupe sans arrêt.",
+   "rating": 3,
+   "language": "fr",
+   "author": "user4191",
+   "is_spam": false,
+   "aspects": [
+    "sound",
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g45",
+   "text": "Mic picks up too much noise on calls.",
+   "rating": 1,
+   "language": "en",
+   "author": "user4968",
+   "is_spam": false,
+   "aspects": [
+    "mic"
+   ]
+  },
+  {
+   "id": "g38",
+   "text": "Muy cómodos, los uso durante horas. La batería dura toda la semana. La calidad de sonido es excelente, con graves profundos.",
+   "rating": 5,
+   "language": "es",
+   "author": "user2451",
+   "is_spam": false,
+   "aspects": [
+    "comfort",
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "g64",
+   "text": "Sehr klarer, ausgewogener Sound. Zu eng und unbequem.",
+   "rating": 3,
+   "language": "de",
+   "author": "user9998",
+   "is_spam": false,
+   "aspects": [
+    "sound",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g66",
+   "text": "La qualité du micro est terrible. L'autonomie est excellente.",
+   "rating": 3,
+   "language": "fr",
+   "author": "user5616",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "battery"
+   ]
+  },
+  {
+   "id": "g58",
+   "text": "Die Bluetooth-Kopplung ist schnell und stabil.",
+   "rating": 5,
+   "language": "de",
+   "author": "user1286",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g44",
+   "text": "マイクの品質がひどいです。 軽くてイヤーパッドも柔らかいです。",
+   "rating": 3,
+   "language": "ja",
+   "author": "user3674",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g15",
+   "text": "Bluetooth pairing is instant and stable. Mic picks up too much noise on calls.",
+   "rating": 3,
+   "language": "en",
+   "author": "user3012",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "mic"
+   ]
+  },
+  {
+   "id": "g56",
+   "text": "La batterie tient toute la semaine. Un son très clair et équilibré.",
+   "rating": 5,
+   "language": "fr",
+   "author": "user3186",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "g1",
+   "text": "The microphone quality is terrible, people can't hear me.",
+   "rating": 1,
+   "language": "en",
+   "author": "user7955",
+   "is_spam": false,
+   "aspects": [
+    "mic"
+   ]
+  },
+  {
+   "id": "g71",
+   "text": "Das Mikrofon nimmt zu viele Geräusche auf.",
+   "rating": 1,
+   "language": "de",
+   "author": "user9247",
+   "is_spam": false,
+   "aspects": [
+    "mic"
+   ]
+  },
+  {
+   "id": "g74",
+   "text": "Mic picks up too much noise on calls.",
+   "rating": 1,
+   "language": "en",
+   "author": "user5070",
+   "is_spam": false,
+   "aspects": [
+    "mic"
+   ]
+  },
+  {
+   "id": "g52",
+   "text": "Le Bluetooth se coupe sans arrêt. La qualité sonore est superbe avec des basses profondes. Très confortables, je les porte des heures.",
+   "rating": 3,
+   "language": "fr",
+   "author": "user6909",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "sound",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g39",
+   "text": "バッテリーが一週間持ちます。 とてもクリアでバランスの良い音です。",
+   "rating": 5,
+   "language": "ja",
+   "author": "user7844",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "g49",
+   "text": "バッテリーが一週間持ちます。",
+   "rating": 5,
+   "language": "ja",
+   "author": "user7545",
+   "is_spam": false,
+   "aspects": [
+    "battery"
+   ]
+  },
+  {
+   "id": "s7",
+   "text": "Amazing amazing product, highly recommend. Buy now!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "user7890",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g35",
+   "text": "Connection disconnects randomly. Mic picks up too much noise on calls. Crystal clear sound, very balanced.",
+   "rating": 2,
+   "language": "en",
+   "author": "user1296",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "mic",
+    "sound"
+   ]
+  },
+  {
+   "id": "g69",
+   "text": "Die Bluetooth-Kopplung ist schnell und stabil. Der Klang ist großartig mit tiefem Bass.",
+   "rating": 5,
+   "language": "de",
+   "author": "user4917",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "sound"
+   ]
+  },
+  {
+   "id": "g26",
+   "text": "バッテリーが一週間持ちます。 軽くてイヤーパッドも柔らかいです。",
+   "rating": 5,
+   "language": "ja",
+   "author": "user9918",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g22",
+   "text": "Connection disconnects randomly. The battery lasts all week. Sound quality is superb with deep bass.",
+   "rating": 4,
+   "language": "en",
+   "author": "user4265",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "g51",
+   "text": "Connection disconnects randomly. The microphone is clear on calls.",
+   "rating": 3,
+   "language": "en",
+   "author": "user9404",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "mic"
+   ]
+  },
+  {
+   "id": "g17",
+   "text": "Los graves son confusos.",
+   "rating": 1,
+   "language": "es",
+   "author": "user9899",
+   "is_spam": false,
+   "aspects": [
+    "sound"
+   ]
+  },
+  {
+   "id": "g5",
+   "text": "Die Mikrofonqualität ist schrecklich. Bluetooth bricht ständig ab.",
+   "rating": 1,
+   "language": "de",
+   "author": "user5919",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g0",
+   "text": "Das Mikrofon klingt bei Anrufen klar. Der Akku hält ewig.",
+   "rating": 5,
+   "language": "de",
+   "author": "user4517",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "battery"
+   ]
+  },
+  {
+   "id": "g70",
+   "text": "Die Verbindung trennt sich zufällig. Der Klang ist großartig mit tiefem Bass.",
+   "rating": 3,
+   "language": "de",
+   "author": "user5427",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "sound"
+   ]
+  },
+  {
+   "id": "g61",
+   "text": "Le micro est clair pendant les appels. Très confortables, je les porte des heures. Le Bluetooth se coupe sans arrêt.",
+   "rating": 4,
+   "language": "fr",
+   "author": "user6542",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "comfort",
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "s2",
+   "text": "BEST PRODUCT EVER!!! Highly recommend, buy now!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "user5214",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g60",
+   "text": "La autonomía es excelente. Muy cómodos, los uso durante horas.",
+   "rating": 5,
+   "language": "es",
+   "author": "user9055",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g68",
+   "text": "L'autonomie est excellente. Un son très clair et équilibré.",
+   "rating": 5,
+   "language": "fr",
+   "author": "user8372",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "s13",
+   "text": "Best product ever!!! Must buy, highly recommended!!! Five stars!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "user6107",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g46",
+   "text": "L'autonomie est excellente. Le micro capte trop de bruit.",
+   "rating": 3,
+   "language": "fr",
+   "author": "user6389",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "mic"
+   ]
+  },
+  {
+   "id": "g42",
+   "text": "Bluetooth keeps dropping every few minutes.",
+   "rating": 1,
+   "language": "en",
+   "author": "user8778",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g19",
+   "text": "とてもクリアでバランスの良い音です。 Bluetoothがしょっちゅう途切れます。",
+   "rating": 3,
+   "language": "ja",
+   "author": "user9480",
+   "is_spam": false,
+   "aspects": [
+    "sound",
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g2",
+   "text": "Sound quality is superb with deep bass.",
+   "rating": 5,
+   "language": "en",
+   "author": "user7499",
+   "is_spam": false,
+   "aspects": [
+    "sound"
+   ]
+  },
+  {
+   "id": "s12",
+   "text": "Best purchase ever!!! Highly recommend to everyone, buy now!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "promo_account",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g47",
+   "text": "Los graves son confusos. La batería dura toda la semana.",
+   "rating": 3,
+   "language": "es",
+   "author": "user6494",
+   "is_spam": false,
+   "aspects": [
+    "sound",
+    "battery"
+   ]
+  },
+  {
+   "id": "s9",
+   "text": "Best product ever!!! Must buy, highly recommended!!! Five stars!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "promo_account",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g41",
+   "text": "Le Bluetooth se coupe sans arrêt. La qualité sonore est superbe avec des basses profondes.",
+   "rating": 3,
+   "language": "fr",
+   "author": "user1605",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "sound"
+   ]
+  },
+  {
+   "id": "g11",
+   "text": "Der Klang ist großartig mit tiefem Bass. Bluetooth bricht ständig ab. Der Akku hält ewig.",
+   "rating": 4,
+   "language": "de",
+   "author": "user5619",
+   "is_spam": false,
+   "aspects": [
+    "sound",
+    "bluetooth",
+    "battery"
+   ]
+  },
+  {
+   "id": "g12",
+   "text": "Mic picks up too much noise on calls. They hurt my ears after an hour.",
+   "rating": 1,
+   "language": "en",
+   "author": "user7428",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g21",
+   "text": "Sehr klarer, ausgewogener Sound.",
+   "rating": 5,
+   "language": "de",
+   "author": "user6533",
+   "is_spam": false,
+   "aspects": [
+    "sound"
+   ]
+  },
+  {
+   "id": "s5",
+   "text": "Best product ever!!! Must buy, highly recommended!!! Five stars!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "user9076",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "s11",
+   "text": "BEST PRODUCT EVER!!! Highly recommend, buy now!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "user4362",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g10",
+   "text": "Das Mikrofon nimmt zu viele Geräusche auf. Die Akkulaufzeit ist hervorragend. Die Verbindung trennt sich zufällig.",
+   "rating": 3,
+   "language": "de",
+   "author": "user7804",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "battery",
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g14",
+   "text": "Bluetooth pairing is instant and stable.",
+   "rating": 5,
+   "language": "en",
+   "author": "user1417",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth"
+   ]
+  },
+  {
+   "id": "g40",
+   "text": "Battery drains way too fast. Sound quality is superb with deep bass.",
+   "rating": 3,
+   "language": "en",
+   "author": "user6111",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "g57",
+   "text": "Battery drains way too fast. Mic picks up too much noise on calls. Crystal clear sound, very balanced.",
+   "rating": 2,
+   "language": "en",
+   "author": "user8633",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "mic",
+    "sound"
+   ]
+  },
+  {
+   "id": "s4",
+   "text": "Best purchase ever!!! Highly recommend to everyone, buy now!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "user7065",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "s3",
+   "text": "Best product ever!!! Must buy, highly recommended!!! Five stars!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "promo_account",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "s6",
+   "text": "BEST PRODUCT EVER!!! Highly recommend, buy now!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "promo_account",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g75",
+   "text": "音質は素晴らしく、低音も深いです。",
+   "rating": 5,
+   "language": "ja",
+   "author": "user8492",
+   "is_spam": false,
+   "aspects": [
+    "sound"
+   ]
+  },
+  {
+   "id": "s0",
+   "text": "Best product ever!!! Must buy, highly recommended!!! Five stars!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "promo_account",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g77",
+   "text": "Un son très clair et équilibré. Très confortables, je les porte des heures.",
+   "rating": 5,
+   "language": "fr",
+   "author": "user2152",
+   "is_spam": false,
+   "aspects": [
+    "sound",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g3",
+   "text": "The battery lasts all week. Crystal clear sound, very balanced.",
+   "rating": 5,
+   "language": "en",
+   "author": "user3961",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "g27",
+   "text": "Die Akkulaufzeit ist hervorragend. Nach einer Stunde tun mir die Ohren weh.",
+   "rating": 3,
+   "language": "de",
+   "author": "user3487",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g6",
+   "text": "Muy cómodos, los uso durante horas. El micrófono se oye claro en las llamadas. Sonido muy claro y equilibrado.",
+   "rating": 5,
+   "language": "es",
+   "author": "user9011",
+   "is_spam": false,
+   "aspects": [
+    "comfort",
+    "mic",
+    "sound"
+   ]
+  },
+  {
+   "id": "g50",
+   "text": "El micrófono se oye claro en las llamadas.",
+   "rating": 5,
+   "language": "es",
+   "author": "user4814",
+   "is_spam": false,
+   "aspects": [
+    "mic"
+   ]
+  },
+  {
+   "id": "g18",
+   "text": "The battery lasts all week. Very comfortable, I wear them for hours.",
+   "rating": 5,
+   "language": "en",
+   "author": "user9873",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g76",
+   "text": "The battery lasts all week.",
+   "rating": 5,
+   "language": "en",
+   "author": "user1615",
+   "is_spam": false,
+   "aspects": [
+    "battery"
+   ]
+  },
+  {
+   "id": "g7",
+   "text": "Die Akkulaufzeit ist hervorragend.",
+   "rating": 5,
+   "language": "de",
+   "author": "user6737",
+   "is_spam": false,
+   "aspects": [
+    "battery"
+   ]
+  },
+  {
+   "id": "g53",
+   "text": "The microphone is clear on calls. The battery lasts all week. Very comfortable, I wear them for hours.",
+   "rating": 5,
+   "language": "en",
+   "author": "user9240",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "battery",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g62",
+   "text": "電池持ちが素晴らしいです。 音質は素晴らしく、低音も深いです。 とても快適で、何時間でも着けていられます。",
+   "rating": 5,
+   "language": "ja",
+   "author": "user8013",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "sound",
+    "comfort"
+   ]
+  },
+  {
+   "id": "s10",
+   "text": "BEST PRODUCT EVER!!! Highly recommend, buy now!!!",
+   "rating": 5,
+   "language": "en",
+   "author": "user5785",
+   "is_spam": true,
+   "aspects": []
+  },
+  {
+   "id": "g23",
+   "text": "Das Mikrofon klingt bei Anrufen klar. Sehr bequem, ich trage sie stundenlang.",
+   "rating": 5,
+   "language": "de",
+   "author": "user3602",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g78",
+   "text": "The microphone quality is terrible, people can't hear me. Lightweight and the ear pads are soft.",
+   "rating": 3,
+   "language": "en",
+   "author": "user5564",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g63",
+   "text": "電池持ちが素晴らしいです。 とても快適で、何時間でも着けていられます。",
+   "rating": 5,
+   "language": "ja",
+   "author": "user5353",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g79",
+   "text": "Die Mikrofonqualität ist schrecklich. Der Bass ist matschig.",
+   "rating": 1,
+   "language": "de",
+   "author": "user1356",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "sound"
+   ]
+  },
+  {
+   "id": "g13",
+   "text": "Die Mikrofonqualität ist schrecklich. Der Akku hält ewig. Der Klang ist großartig mit tiefem Bass.",
+   "rating": 4,
+   "language": "de",
+   "author": "user1861",
+   "is_spam": false,
+   "aspects": [
+    "mic",
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "g37",
+   "text": "The battery lasts all week. Crystal clear sound, very balanced.",
+   "rating": 5,
+   "language": "en",
+   "author": "user3447",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "sound"
+   ]
+  },
+  {
+   "id": "g33",
+   "text": "Der Klang ist großartig mit tiefem Bass.",
+   "rating": 5,
+   "language": "de",
+   "author": "user6999",
+   "is_spam": false,
+   "aspects": [
+    "sound"
+   ]
+  },
+  {
+   "id": "g28",
+   "text": "La calidad del micrófono es terrible.",
+   "rating": 1,
+   "language": "es",
+   "author": "user3823",
+   "is_spam": false,
+   "aspects": [
+    "mic"
+   ]
+  },
+  {
+   "id": "g59",
+   "text": "The battery lasts all week. The microphone is clear on calls. Crystal clear sound, very balanced.",
+   "rating": 5,
+   "language": "en",
+   "author": "user3172",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "mic",
+    "sound"
+   ]
+  },
+  {
+   "id": "g29",
+   "text": "Bluetooth pairing is instant and stable. The battery lasts all week. They hurt my ears after an hour.",
+   "rating": 3,
+   "language": "en",
+   "author": "user4134",
+   "is_spam": false,
+   "aspects": [
+    "bluetooth",
+    "battery",
+    "comfort"
+   ]
+  },
+  {
+   "id": "g24",
+   "text": "Battery life is fantastic, easily 30 hours. Sound quality is superb with deep bass.",
+   "rating": 5,
+   "language": "en",
+   "author": "user8771",
+   "is_spam": false,
+   "aspects": [
+    "battery",
+    "sound"
+   ]
+  }
+ ]
+}
