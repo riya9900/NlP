@@ -43,3 +43,7 @@ Thumbs.db
 .claude/
 *.log
 npm-debug.log*
+
+# Office lock files and stray crash dumps
+~$*
+*.stackdump
