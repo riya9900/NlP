@@ -1,0 +1,194 @@
+{
+  "spam_corpus": {
+    "n_train": 34447,
+    "n_test": 6079,
+    "fake_share": 0.501,
+    "models": {
+      "Majority class": {
+        "accuracy": 0.501,
+        "precision": 0.501,
+        "recall": 1.0,
+        "f1": 0.667,
+        "roc_auc": 0.5
+      },
+      "Word TF-IDF + LR": {
+        "accuracy": 0.943,
+        "precision": 0.954,
+        "recall": 0.93,
+        "f1": 0.942,
+        "roc_auc": 0.986
+      },
+      "Char n-gram TF-IDF + LR (ours)": {
+        "accuracy": 0.926,
+        "precision": 0.931,
+        "recall": 0.922,
+        "f1": 0.926,
+        "roc_auc": 0.978
+      }
+    }
+  },
+  "spam_demo": {
+    "n": 94,
+    "n_spam": 14,
+    "threshold": 0.7,
+    "classifier_only": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "minhash_and_rules": {
+      "precision": 0.778,
+      "recall": 1.0,
+      "f1": 0.875
+    },
+    "all_signals": {
+      "precision": 0.737,
+      "recall": 1.0,
+      "f1": 0.848
+    }
+  },
+  "themes_demo": {
+    "n_aspects": 5,
+    "n_themes_llm": 6,
+    "n_themes_keyword": 8,
+    "llm_labels": {
+      "summary": {
+        "aspect_coverage_jaccard>=0.3": 0.6,
+        "mean_best_jaccard": 0.338,
+        "sentiment_sign_accuracy": 1.0,
+        "label_accuracy": 0.4
+      },
+      "per_aspect": [
+        {
+          "aspect": "battery",
+          "jaccard": 0.196,
+          "label": "Sound quality",
+          "sign_ok": true,
+          "label_ok": false
+        },
+        {
+          "aspect": "sound",
+          "jaccard": 0.486,
+          "label": "Sound quality",
+          "sign_ok": true,
+          "label_ok": true
+        },
+        {
+          "aspect": "comfort",
+          "jaccard": 0.32,
+          "label": "Comfortability",
+          "sign_ok": true,
+          "label_ok": true
+        },
+        {
+          "aspect": "mic",
+          "jaccard": 0.394,
+          "label": "Noise sensitivity",
+          "sign_ok": true,
+          "label_ok": false
+        },
+        {
+          "aspect": "bluetooth",
+          "jaccard": 0.292,
+          "label": "Battery life",
+          "sign_ok": true,
+          "label_ok": false
+        }
+      ]
+    },
+    "keyword_labels": {
+      "summary": {
+        "aspect_coverage_jaccard>=0.3": 0.4,
+        "mean_best_jaccard": 0.271,
+        "sentiment_sign_accuracy": 1.0,
+        "label_accuracy": 0.8
+      },
+      "per_aspect": [
+        {
+          "aspect": "battery",
+          "jaccard": 0.162,
+          "label": "Autonomie",
+          "sign_ok": true,
+          "label_ok": true
+        },
+        {
+          "aspect": "sound",
+          "jaccard": 0.189,
+          "label": "Deep",
+          "sign_ok": true,
+          "label_ok": false
+        },
+        {
+          "aspect": "comfort",
+          "jaccard": 0.32,
+          "label": "Confortables",
+          "sign_ok": true,
+          "label_ok": true
+        },
+        {
+          "aspect": "mic",
+          "jaccard": 0.394,
+          "label": "Calls",
+          "sign_ok": true,
+          "label_ok": true
+        },
+        {
+          "aspect": "bluetooth",
+          "jaccard": 0.292,
+          "label": "Bluetooth",
+          "sign_ok": true,
+          "label_ok": true
+        }
+      ]
+    },
+    "pipeline": {
+      "reviews": 94,
+      "analysed": 75,
+      "spam_removed": 19,
+      "languages": {
+        "en": 0.373,
+        "de": 0.267,
+        "ja": 0.133,
+        "es": 0.133,
+        "fr": 0.093
+      }
+    }
+  },
+  "latency_demo_cpu_s": {
+    "first_call_incl_model_load": 30.5,
+    "warm": 9.8,
+    "reviews": 94
+  },
+  "sentiment_by_language": {
+    "en": {
+      "n": 200,
+      "accuracy": 0.835,
+      "macro_f1": 0.835,
+      "positive_share": 0.5
+    },
+    "de": {
+      "n": 200,
+      "accuracy": 0.85,
+      "macro_f1": 0.849,
+      "positive_share": 0.5
+    },
+    "es": {
+      "n": 200,
+      "accuracy": 0.93,
+      "macro_f1": 0.93,
+      "positive_share": 0.5
+    },
+    "fr": {
+      "n": 200,
+      "accuracy": 0.895,
+      "macro_f1": 0.895,
+      "positive_share": 0.5
+    },
+    "ja": {
+      "n": 200,
+      "accuracy": 0.9,
+      "macro_f1": 0.899,
+      "positive_share": 0.5
+    }
+  }
+}
