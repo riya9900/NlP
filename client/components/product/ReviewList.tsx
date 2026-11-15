@@ -197,7 +197,7 @@ export default function ReviewList({
           {selectedTheme && (
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-md border border-amber-300 bg-amber-50 px-3 py-1 text-xs font-semibold text-neutral-900">
-                <Filter className="h-3 w-3 text-amber-600" />
+                <Filter className="h-3 w-3" />
                 Theme: {selectedTheme.label}
               </span>
               <button
@@ -315,7 +315,7 @@ export default function ReviewList({
           <button
             type="button"
             onClick={resetAllFilters}
-            className="mt-3 cursor-pointer rounded-md bg-blue-600 px-3.5 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
+            className="mt-3 cursor-pointer rounded-md bg-neutral-900 px-3.5 py-1.5 text-xs font-semibold text-white hover:bg-neutral-800"
           >
             Clear filters
           </button>

@@ -6,22 +6,27 @@ import {
   AlertCircle,
   ArrowLeft,
   BarChart3,
-  Sparkles,
+  Play,
   Star,
 } from "lucide-react";
-import { analyzeReviews, ApiError, fetchReviews } from "@/lib/api";
+import { analyzeReviews, ApiError, fetchReviews, generateSummary, translateTexts } from "@/lib/api";
 import type { Review, ReviewAnnotation, SummaryResponse } from "@/lib/types";
 import { useToast } from "@/components/ToastProvider";
 import SummaryCard from "./SummaryCard";
 import ThemeChart from "./ThemeChart";
 import ReviewList from "./ReviewList";
+import ProductAgent from "./ProductAgent";
+import ProductVisuals from "./ProductVisuals";
+import type { ProductContext } from "@/lib/agent-context";
 
 export default function ProductWorkspace({
   productId,
   title,
+  image,
 }: {
   productId: string;
   title?: string;
+  image?: string;
 }) {
   const toast = useToast();
 
@@ -84,7 +89,7 @@ export default function ProductWorkspace({
           {
             reviews: payloadReviews,
             filter_spam: nextFilterSpam,
-            lang: nextLang,
+            lang: "en", // summary language is handled client-side (Groq writes English, MarianMT translates)
           },
           controller.signal,
         );
@@ -208,8 +213,8 @@ export default function ProductWorkspace({
   };
 
   const handleChangeLang = (next: string) => {
+    // No re-analysis: the English summary + labels are translated on the CPU (MarianMT).
     setSummaryLang(next);
-    scheduleReanalyze(filterSpam, next);
   };
 
   const annotationsMap = useMemo(() => {
@@ -222,10 +227,6 @@ export default function ProductWorkspace({
     return map;
   }, [analysis]);
 
-  const selectedTheme = useMemo(() => {
-    if (selectedThemeId === null || !analysis?.themes) return null;
-    return analysis.themes.find((t) => t.id === selectedThemeId) ?? null;
-  }, [selectedThemeId, analysis]);
 
   const averageRating = useMemo(() => {
     const rated = reviews.filter((r) => typeof r.rating === "number");
@@ -236,8 +237,134 @@ export default function ProductWorkspace({
 
   const isDemo = productId === "demo";
 
+  // What the assistant may use: only the NLP results shown on this page.
+  const agentContext = useMemo<ProductContext | null>(() => {
+    if (!analysis || analyzing) return null;
+    const slim = (t: { label: string; mentions: number; sentiment: number; quotes: string[] }) => ({
+      label: t.label,
+      mentions: t.mentions,
+      sentiment: t.sentiment,
+      quotes: t.quotes.slice(0, 3),
+    });
+    const stars: Record<string, number> = { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0 };
+    for (const r of reviews) {
+      if (r.rating) stars[String(Math.min(5, Math.max(1, Math.round(r.rating))))] += 1;
+    }
+    const sentimentCounts = { positive: 0, neutral: 0, negative: 0 };
+    const spamReasons: Record<string, number> = {};
+    for (const a of analysis.annotations) {
+      if (a.sentiment > 0.15) sentimentCounts.positive += 1;
+      else if (a.sentiment < -0.15) sentimentCounts.negative += 1;
+      else sentimentCounts.neutral += 1;
+      if (a.is_spam) {
+        const key = (a.spam_reasons[0] ?? "flagged").replace(/\s*\(.*\)$/, "").replace(/\d+/g, "N");
+        spamReasons[key] = (spamReasons[key] ?? 0) + 1;
+      }
+    }
+    return {
+      title: isDemo ? "Aurora X1 Wireless Headphones" : title || `Product #${resolvedProductId}`,
+      avgRating: averageRating,
+      reviewCount: analysis.total_reviews,
+      analyzedCount: analysis.analyzed_reviews,
+      spamRemoved: analysis.spam_removed,
+      languages: analysis.languages,
+      summary: analysis.blurb,
+      pros: analysis.pros.map(slim),
+      cons: analysis.cons.map(slim),
+      themes: analysis.themes.map(slim),
+      ratingDistribution: stars,
+      sentimentCounts,
+      spamReasons,
+    };
+  }, [analysis, analyzing, reviews, averageRating, title, resolvedProductId, isDemo]);
+
+  // ---- Summary: Groq writes it (English) from the NLP results; MarianMT (CPU) translates it ----
+  const [summaryEn, setSummaryEn] = useState("");
+  const [summaryLoading, setSummaryLoading] = useState(false);
+  const [summaryError, setSummaryError] = useState<string | null>(null);
+  const [translation, setTranslation] = useState<{
+    lang: string;
+    summary: string;
+    labels: Record<string, string>;
+  } | null>(null);
+  const [translating, setTranslating] = useState(false);
+  const translationCache = useRef(
+    new Map<string, { lang: string; summary: string; labels: Record<string, string> }>(),
+  );
+
+  useEffect(() => {
+    if (!agentContext) return;
+    const ctrl = new AbortController();
+    setSummaryLoading(true);
+    setSummaryError(null);
+    generateSummary(agentContext, ctrl.signal)
+      .then((text) => setSummaryEn(text))
+      .catch((e) => {
+        if (ctrl.signal.aborted) return;
+        setSummaryEn("");
+        setSummaryError(e instanceof Error ? e.message : "Summary failed");
+      })
+      .finally(() => {
+        if (!ctrl.signal.aborted) setSummaryLoading(false);
+      });
+    return () => ctrl.abort();
+  }, [agentContext]);
+
+  useEffect(() => {
+    if (summaryLang === "en" || !agentContext) {
+      setTranslation(null);
+      return;
+    }
+    const labels = Array.from(
+      new Set([...agentContext.pros, ...agentContext.cons, ...agentContext.themes].map((t) => t.label)),
+    );
+    const texts = [summaryEn || "", ...labels];
+    if (!texts.some(Boolean)) return;
+    const key = `${summaryLang}|${texts.join("|")}`;
+    const hit = translationCache.current.get(key);
+    if (hit) {
+      setTranslation(hit);
+      return;
+    }
+    const ctrl = new AbortController();
+    setTranslating(true);
+    translateTexts(texts, summaryLang, ctrl.signal)
+      .then((out) => {
+        const val = {
+          lang: summaryLang,
+          summary: summaryEn ? out[0] : "",
+          labels: Object.fromEntries(labels.map((l, i) => [l, out[i + 1] || l])),
+        };
+        translationCache.current.set(key, val);
+        setTranslation(val);
+      })
+      .catch((e) => {
+        if (ctrl.signal.aborted) return;
+        setTranslation(null);
+        toast.error("Translation unavailable", e instanceof Error ? e.message : "Could not translate");
+      })
+      .finally(() => {
+        if (!ctrl.signal.aborted) setTranslating(false);
+      });
+    return () => ctrl.abort();
+  }, [summaryLang, summaryEn, agentContext, toast]);
+
+  const displayAnalysis = useMemo<SummaryResponse | null>(() => {
+    if (!analysis || summaryLang === "en" || !translation || translation.lang !== summaryLang) return analysis;
+    const tl = (t: SummaryResponse["themes"][number]) => ({ ...t, label: translation.labels[t.label] ?? t.label });
+    return { ...analysis, themes: analysis.themes.map(tl), pros: analysis.pros.map(tl), cons: analysis.cons.map(tl) };
+  }, [analysis, summaryLang, translation]);
+
+  const displaySummary =
+    summaryLang === "en" ? summaryEn : translation && translation.lang === summaryLang ? translation.summary : "";
+
+  const selectedTheme = useMemo(() => {
+    if (selectedThemeId === null || !displayAnalysis?.themes) return null;
+    return displayAnalysis.themes.find((t) => t.id === selectedThemeId) ?? null;
+  }, [selectedThemeId, displayAnalysis]);
+
   return (
-    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-7 sm:px-6 lg:px-8">
+    <main className="w-full flex-1 px-4 py-6 sm:px-6 lg:px-8 2xl:px-12">
       {/* Top Breadcrumb & Product Header */}
       <div className="mb-6 flex flex-col gap-4 rounded-md border border-neutral-300 bg-white p-5 shadow-xs sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -261,7 +388,7 @@ export default function ProductWorkspace({
             </h1>
             {isDemo && (
               <span className="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-900">
-                <Sparkles className="h-3 w-3 text-amber-500" />
+                <Play className="h-3 w-3" />
                 Multilingual Demo Dataset
               </span>
             )}
@@ -271,7 +398,7 @@ export default function ProductWorkspace({
         <div className="flex flex-wrap items-center gap-2.5">
           {averageRating !== null && (
             <div className="inline-flex items-center gap-1.5 rounded-md border border-amber-200 bg-amber-50/80 px-3 py-1.5 text-xs font-semibold text-neutral-900">
-              <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+              <Star className="h-4 w-4 fill-neutral-900 text-neutral-900" />
               <span>{averageRating.toFixed(2)} avg rating</span>
             </div>
           )}
@@ -282,7 +409,7 @@ export default function ProductWorkspace({
             href="/evaluation"
             className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 bg-white px-3 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-100"
           >
-            <BarChart3 className="h-3.5 w-3.5 text-blue-600" />
+            <BarChart3 className="h-3.5 w-3.5" />
             Model Metrics
           </Link>
         </div>
@@ -291,7 +418,7 @@ export default function ProductWorkspace({
       {/* Reviews Fetch Error */}
       {reviewsError && (
         <div className="mb-6 flex items-start gap-3 rounded-md border border-red-200 bg-red-50/80 p-5 text-red-900">
-          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
           <div>
             <p className="text-sm font-semibold">{reviewsError.message}</p>
             {reviewsError.detail && reviewsError.detail !== reviewsError.message && (
@@ -307,7 +434,7 @@ export default function ProductWorkspace({
               {!isDemo && (
                 <Link
                   href="/product/demo"
-                  className="rounded-md bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
+                  className="rounded-md bg-neutral-900 px-3 py-1.5 text-xs font-semibold text-white hover:bg-neutral-800"
                 >
                   Open demo product
                 </Link>
@@ -319,10 +446,14 @@ export default function ProductWorkspace({
 
       {/* Main Content Stack */}
       {!reviewsError && (reviewsLoading || reviews.length > 0) && (
-        <div className="space-y-6">
+        <>
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start 2xl:grid-cols-[minmax(0,1fr)_26rem]">
+        <div className="min-w-0 space-y-6">
           {/* 1. Summary Card */}
           <SummaryCard
-            analysis={analysis}
+            analysis={displayAnalysis}
+            summary={{ text: displaySummary, loading: summaryLoading || translating, error: summaryError }}
+            onChat={() => window.dispatchEvent(new Event("open-assistant"))}
             analyzing={analyzing}
             reviewCount={reviews.length}
             analyzeError={analyzeError}
@@ -346,14 +477,14 @@ export default function ProductWorkspace({
           {/* 2. Theme Chart (shown once reviews exist & either analyzing or themes available) */}
           {(analyzing || (analysis && analysis.themes.length > 0)) && (
             <ThemeChart
-              themes={analysis?.themes ?? []}
+              themes={displayAnalysis?.themes ?? []}
               analyzing={analyzing}
               selectedThemeId={selectedThemeId}
               onSelectTheme={setSelectedThemeId}
             />
           )}
 
-          {/* 3. Review List (rendered immediately as soon as reviews load!) */}
+          {/* 4. Review List (rendered immediately as soon as reviews load!) */}
           <ReviewList
             reviews={reviews}
             annotationsMap={annotationsMap}
@@ -362,8 +493,15 @@ export default function ProductWorkspace({
             onClearTheme={() => setSelectedThemeId(null)}
           />
         </div>
-      )}
 
+        {/* Right column: product image + similar products (assistant is the floating button) */}
+        <aside className="space-y-4 lg:sticky lg:top-20">
+          <ProductVisuals productId={productId} title={isDemo ? undefined : title} image={image} />
+        </aside>
+        </div>
+        <ProductAgent context={agentContext} />
+        </>
+      )}
       {/* Empty Reviews when fetch succeeded with 0 reviews */}
       {!reviewsError && !reviewsLoading && reviews.length === 0 && (
         <ReviewList

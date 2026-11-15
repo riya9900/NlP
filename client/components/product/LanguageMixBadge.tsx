@@ -32,7 +32,7 @@ export default function LanguageMixBadge({
     <div className="rounded-md border border-neutral-300 bg-neutral-100 p-3.5">
       <div className="mb-2 flex items-center justify-between gap-2">
         <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-600">
-          <Globe className="h-3.5 w-3.5 text-blue-600" />
+          <Globe className="h-3.5 w-3.5" />
           <span>Language Mix</span>
         </div>
         <span className="text-xs font-medium text-neutral-500">

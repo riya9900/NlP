@@ -20,7 +20,6 @@ import {
   GitBranch,
   Layers,
   ShieldCheck,
-  Sparkles,
   Upload,
   XCircle,
 } from "lucide-react";
@@ -70,7 +69,7 @@ const PIPELINE_STEPS = [
     title: "LLM Summary",
     detail: "Cluster labels & grounded pros/cons blurb generated in the requested output language.",
     model: "Qwen2.5-7B-Instruct-AWQ",
-    icon: Sparkles,
+    icon: Layers,
     accent: "yellow",
   },
 ];
@@ -203,7 +202,7 @@ export default function EvaluationDashboard({
       {/* Missing file notice */}
       {!data && (
         <div className="flex items-start gap-3 rounded-md border border-amber-300 bg-amber-50 p-5 text-neutral-900">
-          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />
           <div className="space-y-1">
             <p className="text-sm font-semibold">
               No <code className="tabular-nums">docs/evaluation_results.json</code> file found on disk yet

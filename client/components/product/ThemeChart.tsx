@@ -188,7 +188,7 @@ export default function ThemeChart({
             </ResponsiveContainer>
           </div>
           <div className="mt-2 flex items-center gap-1.5 text-xs text-neutral-500">
-            <MousePointerClick className="h-3.5 w-3.5 text-blue-600" />
+            <MousePointerClick className="h-3.5 w-3.5" />
             <span>
               Click any bar to filter the review list below
               {selectedThemeId !== null ? " (click again to clear)" : ""}.

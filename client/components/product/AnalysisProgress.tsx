@@ -6,12 +6,12 @@ import { Check, Loader2 } from "lucide-react";
 // Stages mirror the server pipeline. Progress is time-based (the API is a single request),
 // so each stage gets an estimated duration; the last stage stays active until the response arrives.
 const STAGES = [
-  { label: "Cleaning reviews and detecting languages", ms: 2500 },
+  { label: "Cleaning reviews and detecting languages", ms: 3000 },
   { label: "Filtering spam and near-duplicate reviews", ms: 4000 },
-  { label: "Embedding sentences with BGE-M3", ms: 8000 },
-  { label: "Scoring sentiment per sentence", ms: 7000 },
-  { label: "Clustering themes and ranking by sentiment", ms: 5000 },
-  { label: "Writing the summary with Qwen2.5-7B", ms: Infinity },
+  { label: "Embedding sentences (multilingual transformer)", ms: 12000 },
+  { label: "Scoring sentiment per sentence", ms: 12000 },
+  { label: "Clustering themes and ranking by sentiment", ms: 6000 },
+  { label: "Writing the summary with a local language model", ms: Infinity },
 ];
 
 function Typewriter({ text }: { text: string }) {
@@ -69,9 +69,9 @@ export default function AnalysisProgress({ reviewCount }: { reviewCount: number 
               }`}
             >
               {done ? (
-                <Check className="h-4 w-4 text-emerald-600" />
+                <Check className="h-4 w-4" />
               ) : current ? (
-                <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
+                <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
                 <span className="h-4 w-4 rounded-md border border-neutral-300 bg-white" />
               )}
@@ -81,7 +81,7 @@ export default function AnalysisProgress({ reviewCount }: { reviewCount: number 
         })}
       </ol>
       <p className="mt-3 text-xs text-neutral-500">
-        The first run after the server starts also loads the models (30–60 s). The full review
+        The first run after the server starts downloads/loads the models and can take a few minutes. The full review
         list below is already usable.
       </p>
     </div>

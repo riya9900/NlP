@@ -146,3 +146,41 @@ export const SUMMARY_LANGUAGES: Array<{ code: string; label: string }> = [
   { code: "pt", label: "Português (PT)" },
   { code: "zh", label: "中文 (ZH)" },
 ];
+
+/** MarianMT (CPU) via the FastAPI server: English -> target language. */
+export async function translateTexts(
+  texts: string[],
+  target: string,
+  signal?: AbortSignal,
+): Promise<string[]> {
+  const res = await request(`${API_BASE_URL}/api/translate`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ texts, target }),
+    signal,
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    const detail = await parseErrorDetail(res);
+    throw new ApiError(detail || `Translation failed (${res.status})`, res.status, detail);
+  }
+  const data = (await res.json()) as { translations: string[] };
+  return data.translations;
+}
+
+/** Groq-written English summary from the NLP results (Next.js route, key stays server-side). */
+export async function generateSummary(
+  context: import("./agent-context").ProductContext,
+  signal?: AbortSignal,
+): Promise<string> {
+  const res = await fetch("/api/summary", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ context }),
+    signal,
+    cache: "no-store",
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data?.error || `Summary failed (${res.status})`);
+  return data.summary as string;
+}

@@ -182,10 +182,10 @@ function ToastCard({
     >
       <div className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${style.bgIcon}`}>
         {toast.variant === "loading" && <ToastSpinner />}
-        {toast.variant === "success" && <CheckCircle2 className="h-4.5 w-4.5 text-emerald-600" />}
-        {toast.variant === "warning" && <AlertTriangle className="h-4.5 w-4.5 text-amber-500" />}
-        {toast.variant === "error" && <XCircle className="h-4.5 w-4.5 text-red-600" />}
-        {toast.variant === "info" && <Info className="h-4.5 w-4.5 text-blue-600" />}
+        {toast.variant === "success" && <CheckCircle2 className="h-4.5 w-4.5" />}
+        {toast.variant === "warning" && <AlertTriangle className="h-4.5 w-4.5" />}
+        {toast.variant === "error" && <XCircle className="h-4.5 w-4.5" />}
+        {toast.variant === "info" && <Info className="h-4.5 w-4.5" />}
       </div>
 
       <div className="min-w-0 flex-1">

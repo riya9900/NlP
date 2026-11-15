@@ -7,9 +7,10 @@ import {
   ChevronUp,
   Filter,
   Languages,
+  MessageSquare,
   Quote,
   ShieldCheck,
-  Sparkles,
+  FileText,
   ThumbsDown,
   ThumbsUp,
 } from "lucide-react";
@@ -21,6 +22,8 @@ import AnalysisProgress from "./AnalysisProgress";
 interface SummaryCardProps {
   analysis: SummaryResponse | null;
   analyzing: boolean;
+  summary?: { text: string; loading: boolean; error: string | null };
+  onChat?: () => void;
   reviewCount?: number;
   analyzeError: { message: string; detail?: string } | null;
   filterSpam: boolean;
@@ -36,6 +39,8 @@ interface SummaryCardProps {
 export default function SummaryCard({
   analysis,
   analyzing,
+  summary,
+  onChat,
   reviewCount = 0,
   analyzeError,
   filterSpam,
@@ -63,8 +68,8 @@ export default function SummaryCard({
       {/* Header & Controls Bar */}
       <div className="flex flex-col gap-4 border-b border-neutral-300 bg-gradient-to-r from-blue-50/60 via-white to-white px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-blue-600 text-white shadow-xs">
-            <Sparkles className="h-4.5 w-4.5 text-amber-300" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 text-white shadow-xs">
+            <FileText className="h-4.5 w-4.5" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -98,7 +103,7 @@ export default function SummaryCard({
               disabled={!hasReviews}
               onClick={() => onToggleSpam(!filterSpam)}
               className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600/30 disabled:cursor-not-allowed disabled:opacity-50 ${
-                filterSpam ? "bg-blue-600" : "bg-neutral-300"
+                filterSpam ? "bg-neutral-900" : "bg-neutral-300"
               }`}
             >
               <span
@@ -111,7 +116,7 @@ export default function SummaryCard({
 
           {/* Summary Language Selector */}
           <div className="inline-flex items-center gap-2 rounded-md border border-neutral-300 bg-white px-3 py-1.5 shadow-2xs">
-            <Languages className="h-4 w-4 text-blue-600" />
+            <Languages className="h-4 w-4" />
             <label htmlFor="summary-lang-select" className="text-xs font-medium text-neutral-500">
               Summary:
             </label>
@@ -138,7 +143,7 @@ export default function SummaryCard({
         {analyzeError && !analyzing && (
           <div className="mb-4 flex flex-col gap-2 rounded-md border border-amber-300 bg-amber-50/90 p-4 text-neutral-900 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />
               <div>
                 <p className="text-sm font-semibold">{analyzeError.message}</p>
                 {analyzeError.detail && analyzeError.detail !== analyzeError.message && (
@@ -189,12 +194,46 @@ export default function SummaryCard({
         {/* Loaded Summary Content */}
         {!analyzing && analysis && (
           <div className="space-y-5">
-            {/* Blurb (hidden when llm_used is false) */}
+            {/* OLD one-line template blurb (kept so you can reuse it):
             {analysis.llm_used && analysis.blurb && (
               <div className="rounded-md border border-blue-100 bg-blue-50/40 p-4">
                 <p className="text-sm leading-relaxed text-neutral-800">{analysis.blurb}</p>
               </div>
             )}
+            */}
+
+            {/* Summary written by Groq from the pipeline results (MarianMT translates it for non-English) */}
+            <div className="rounded-md border border-neutral-300 bg-neutral-100 p-4">
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <h3 className="text-sm font-semibold text-neutral-900">Summary</h3>
+                <button
+                  type="button"
+                  onClick={onChat}
+                  className="inline-flex items-center gap-1.5 rounded-md bg-neutral-900 px-3 py-1.5 text-xs font-semibold text-white hover:bg-neutral-800"
+                >
+                  <MessageSquare className="h-3.5 w-3.5" />
+                  Chat with AI
+                </button>
+              </div>
+              {summary?.loading ? (
+                <div className="space-y-2" aria-busy="true">
+                  <div className="h-3.5 w-full animate-pulse rounded-md bg-neutral-200" />
+                  <div className="h-3.5 w-11/12 animate-pulse rounded-md bg-neutral-200" />
+                  <div className="h-3.5 w-9/12 animate-pulse rounded-md bg-neutral-200" />
+                </div>
+              ) : summary?.text ? (
+                <p className="text-sm leading-relaxed text-neutral-800">{summary.text}</p>
+              ) : (
+                <>
+                  <p className="text-sm leading-relaxed text-neutral-800">{analysis.blurb}</p>
+                  {summary?.error && (
+                    <p className="mt-2 text-xs text-neutral-500">
+                      AI summary unavailable ({summary.error}). Showing the basic summary.
+                    </p>
+                  )}
+                </>
+              )}
+            </div>
 
             {/* Pros & Cons Chips */}
             <div className="grid gap-5 md:grid-cols-2">
@@ -294,7 +333,7 @@ export default function SummaryCard({
                       className={`inline-flex cursor-pointer items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
                         selectedThemeId === expandedChip.theme.id
                           ? "bg-amber-100 text-amber-900 border border-amber-300"
-                          : "bg-blue-600 text-white hover:bg-blue-700"
+                          : "bg-neutral-900 text-white hover:bg-neutral-800"
                       }`}
                     >
                       <Filter className="h-3 w-3" />

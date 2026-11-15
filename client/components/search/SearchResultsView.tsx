@@ -8,7 +8,7 @@ import {
   ArrowRight,
   Package,
   Search,
-  Sparkles,
+  Play,
   Star,
 } from "lucide-react";
 import { ApiError, searchProducts } from "@/lib/api";
@@ -110,7 +110,7 @@ function SearchResultsInner({ query }: { query: string }) {
           </div>
           <button
             type="submit"
-            className="h-10 cursor-pointer rounded-md bg-blue-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+            className="h-10 cursor-pointer rounded-md bg-neutral-900 px-4 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
           >
             Search
           </button>
@@ -120,7 +120,7 @@ function SearchResultsInner({ query }: { query: string }) {
       {/* Error State */}
       {error && (
         <div className="mb-6 flex items-start gap-3 rounded-md border border-red-200 bg-red-50/70 p-4 text-red-900">
-          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
           <div className="flex-1">
             <p className="text-sm font-semibold">{error.message}</p>
             {error.detail && error.detail !== error.message && (
@@ -131,7 +131,7 @@ function SearchResultsInner({ query }: { query: string }) {
                 href="/product/demo"
                 className="inline-flex items-center gap-1.5 rounded-md border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-neutral-900 hover:bg-amber-100"
               >
-                <Sparkles className="h-3.5 w-3.5 text-amber-500" />
+                <Play className="h-3.5 w-3.5" />
                 Try the offline demo product instead
               </Link>
             </div>
@@ -169,9 +169,9 @@ function SearchResultsInner({ query }: { query: string }) {
           </p>
           <Link
             href="/product/demo"
-            className="mt-5 inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+            className="mt-5 inline-flex items-center gap-2 rounded-md bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
           >
-            <Sparkles className="h-4 w-4 text-amber-300" />
+            <Play className="h-4 w-4" />
             Open Demo Product
           </Link>
         </div>
@@ -187,7 +187,7 @@ function SearchResultsInner({ query }: { query: string }) {
             {products.map((p) => (
               <Link
                 key={p.product_id}
-                href={`/product/${encodeURIComponent(p.product_id)}?title=${encodeURIComponent(p.title)}`}
+                href={`/product/${encodeURIComponent(p.product_id)}?title=${encodeURIComponent(p.title)}${p.thumbnail ? `&img=${encodeURIComponent(p.thumbnail)}` : ""}`}
                 className="group flex flex-col overflow-hidden rounded-md border border-neutral-300 bg-white shadow-xs transition-all hover:-translate-y-0.5 hover:border-blue-400 "
               >
                 <div className="relative flex h-48 items-center justify-center border-b border-neutral-300 bg-white p-4">
@@ -221,7 +221,7 @@ function SearchResultsInner({ query }: { query: string }) {
 
                       {p.rating != null ? (
                         <div className="inline-flex items-center gap-1 rounded-md border border-amber-200 bg-amber-50 px-2 py-0.5 text-xs font-semibold text-neutral-800">
-                          <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                          <Star className="h-3.5 w-3.5 fill-neutral-900 text-neutral-900" />
                           <span>{p.rating.toFixed(1)}</span>
                           {p.reviews_count != null && (
                             <span className="font-normal text-neutral-500">
