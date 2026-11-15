@@ -14,6 +14,8 @@ import {
   Play,
 } from "lucide-react";
 import HeroVideo from "@/components/HeroVideo";
+import Features from "@/components/Features";
+import Footer from "@/components/Footer";
 
 const SAMPLE_QUERIES = [
   "wireless headphones",
@@ -148,52 +150,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Enterprise Capability Cards */}
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-3">
-          <div className="rounded-md border border-neutral-300 bg-white p-6 shadow-xs transition-shadow ">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-blue-50 text-blue-700 border border-blue-100">
-              <ShieldAlert className="h-5 w-5" />
-            </div>
-            <h2 className="mt-4 text-base font-semibold text-neutral-900">
-              3-Signal Spam & Campaign Filter
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-              Combines a trained fake-review classifier, MinHash-LSH
-              near-duplicate detection, and rating-mismatch heuristics. Toggle
-              spam filtering live to inspect the impact.
-            </p>
-          </div>
+      {/* Features & Architecture Section */}
+      <Features />
 
-          <div className="rounded-md border border-neutral-300 bg-white p-6 shadow-xs transition-shadow ">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-amber-50 text-amber-600 border border-amber-200">
-              <Globe2 className="h-5 w-5" />
-            </div>
-            <h2 className="mt-4 text-base font-semibold text-neutral-900">
-              Multilingual Embeddings & Sentiment
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-              Analyzes English, German, Spanish, French, Japanese, Hindi, and
-              more in one unified vector space with a multilingual transformer,
-              and shows summaries in your chosen language.
-            </p>
-          </div>
-
-          <div className="rounded-md border border-neutral-300 bg-white p-6 shadow-xs transition-shadow ">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-blue-50 text-blue-700 border border-blue-100">
-              <Layers className="h-5 w-5" />
-            </div>
-            <h2 className="mt-4 text-base font-semibold text-neutral-900">
-              Traceable Theme Clustering
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-              HDBSCAN clusters real review sentences into ranked pros and cons.
-              Click any theme bar or chip to inspect supporting quotes and jump
-              to the exact source reviews.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Footer Section */}
+      <Footer />
     </main>
   );
 }

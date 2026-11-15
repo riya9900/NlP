@@ -31,6 +31,16 @@ function NavbarDynamicContent() {
           Search
         </Link>
         <Link
+          href="/features"
+          className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+            pathname === "/features"
+              ? "bg-blue-50 text-blue-700"
+              : "text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900"
+          }`}
+        >
+          Features
+        </Link>
+        <Link
           href="/product/demo"
           className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
             pathname === "/product/demo"
