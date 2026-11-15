@@ -16,8 +16,8 @@ __pycache__/
 .mypy_cache/
 
 # model weights / training output
-server/models/*
-!server/models/.gitkeep
+nlp/models/*
+!nlp/models/.gitkeep
 *.safetensors
 *.pt
 *.bin

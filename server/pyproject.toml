@@ -1,27 +1,16 @@
 [project]
 name = "server"
 version = "0.1.0"
+description = "FastAPI server: SerpAPI products/reviews + calls the reviewnlp package"
 requires-python = ">=3.12"
 dependencies = [
     "cachetools>=8.0.0",
-    "datasketch>=2.0.0",
     "fastapi>=0.163.1",
     "httpx>=0.28.1",
-    "lingua-language-detector>=2.2.0",
-    "numpy>=2.5.4",
     "pydantic-settings>=2.16.3",
-    "scikit-learn>=1.9.1",
     "uvicorn[standard]>=0.54.0",
+    "reviewnlp",
 ]
 
-[dependency-groups]
-gpu = [
-    "accelerate>=1.15.0",
-    "bert-score>=0.3.13",
-    "datasets>=5.2.0",
-    "evaluate>=0.4.6",
-    "rouge-score>=0.1.2",
-    "sentence-transformers>=6.3.0",
-    "torch>=2.15.0",
-    "transformers>=5.23.0",
-]
+[tool.uv.sources]
+reviewnlp = { path = "../nlp", editable = true }

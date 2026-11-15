@@ -1,4 +1,4 @@
-from app.config import get_settings
+from reviewnlp.config import get_nlp_settings as get_settings
 
 
 def resolve_device() -> str:

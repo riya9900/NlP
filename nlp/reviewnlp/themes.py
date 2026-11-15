@@ -6,7 +6,7 @@ from dataclasses import dataclass
 import numpy as np
 from sklearn.cluster import HDBSCAN, KMeans
 
-from app.config import get_settings
+from reviewnlp.config import get_nlp_settings as get_settings
 
 
 @dataclass
@@ -66,3 +66,27 @@ def cluster_sentences(
         )
     clusters.sort(key=lambda c: abs(c.score), reverse=True)
     return clusters[: s.max_themes]
+
+
+def keyword_labels(cluster_texts: dict[int, list[str]]) -> dict[int, str]:
+    """Fallback labels: the most distinctive word/bigram of each cluster (c-TF-IDF style)."""
+    from sklearn.feature_extraction.text import TfidfVectorizer
+
+    ids = list(cluster_texts)
+    if not ids:
+        return {}
+    docs = [" ".join(cluster_texts[i]) for i in ids]
+    try:
+        vec = TfidfVectorizer(
+            ngram_range=(1, 2), token_pattern=r"(?u)\b\w{3,}\b", max_df=0.8, sublinear_tf=True,
+            stop_words="english" if len(docs) > 1 else None,
+        )
+        m = vec.fit_transform(docs)
+    except ValueError:
+        return {i: "General" for i in ids}
+    terms = vec.get_feature_names_out()
+    out = {}
+    for row, cid in enumerate(ids):
+        r = m.getrow(row).toarray().ravel()
+        out[cid] = terms[int(r.argmax())].title() if r.max() > 0 else "General"
+    return out

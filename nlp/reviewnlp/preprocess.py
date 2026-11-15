@@ -4,7 +4,7 @@ import re
 import unicodedata
 from functools import lru_cache
 
-from app.schemas import Review
+from reviewnlp.models import Review
 
 _WS = re.compile(r"\s+")
 _URL = re.compile(r"https?://\S+|www\.\S+")
@@ -20,9 +20,14 @@ def clean_text(text: str) -> str:
 
 @lru_cache
 def _detector():
-    from lingua import LanguageDetectorBuilder
+    from lingua import Language, LanguageDetectorBuilder
 
-    return LanguageDetectorBuilder.from_all_spoken_languages().with_preloaded_language_models().build()
+    # a focused set of common review languages: loads in seconds instead of minutes
+    L = Language
+    langs = [L.ENGLISH, L.GERMAN, L.SPANISH, L.FRENCH, L.JAPANESE, L.CHINESE, L.PORTUGUESE, L.ITALIAN,
+             L.HINDI, L.ARABIC, L.KOREAN, L.RUSSIAN, L.DUTCH, L.TURKISH, L.POLISH, L.SWEDISH, L.INDONESIAN,
+             L.VIETNAMESE, L.THAI]
+    return LanguageDetectorBuilder.from_languages(*langs).build()
 
 
 def detect_language(text: str) -> str:

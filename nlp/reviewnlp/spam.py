@@ -1,7 +1,7 @@
 """Spam / fake-review detection.
 
 Three signals, combined with max():
-  1. fine-tuned XLM-RoBERTa classifier (optional; trained in the notebook)
+  1. TF-IDF + logistic-regression classifier (optional; trained by scripts/train_spam.py)
   2. MinHash-LSH near-duplicate groups (copy-paste / template campaigns)
   3. cheap heuristics (shouting, promo language, rating/text mismatch, author bursts)
 """
@@ -14,10 +14,8 @@ from functools import lru_cache
 
 from datasketch import MinHash, MinHashLSH
 
-from app.config import get_settings
-from app.nlp import remote
-from app.nlp.device import resolve_device
-from app.schemas import Review
+from reviewnlp.config import get_nlp_settings as get_settings
+from reviewnlp.models import Review
 
 _CJK = re.compile(r"[぀-ヿ㐀-鿿가-힯]")
 _PROMO = re.compile(
@@ -61,20 +59,13 @@ def near_duplicate_groups(reviews: list[Review], threshold: float) -> dict[str, 
 
 @lru_cache
 def _classifier():
-    d = get_settings().spam_model_dir
-    if not os.path.isdir(d):
+    """TF-IDF (char n-grams) + logistic regression, trained by scripts/train_spam.py."""
+    p = get_settings().spam_model_path
+    if not os.path.isfile(p):
         return None
-    from transformers import pipeline
+    import joblib
 
-    dev = resolve_device()
-    return pipeline(
-        "text-classification",
-        model=d,
-        top_k=None,
-        device=0 if dev == "cuda" else -1,
-        truncation=True,
-        max_length=256,
-    )
+    return joblib.load(p)
 
 
 def classifier_available() -> bool:
@@ -82,25 +73,10 @@ def classifier_available() -> bool:
 
 
 def classifier_probs(texts: list[str]) -> list[float]:
-    if not texts:
-        return []
-    if remote.enabled():
-        out: list[float] = []
-        for i in range(0, len(texts), 512):
-            out += remote.post("/spam", {"texts": texts[i : i + 512]})["probs"]
-        return out
-    return classifier_probs_local(texts)
-
-
-def classifier_probs_local(texts: list[str]) -> list[float]:
     clf = _classifier()
     if clf is None or not texts:
         return [0.0] * len(texts)
-    out = []
-    for probs in clf(texts, batch_size=64):
-        d = {p["label"].lower(): p["score"] for p in probs}
-        out.append(d.get("fake", d.get("label_1", 0.0)))
-    return out
+    return [float(x) for x in clf.predict_proba(texts)[:, 1]]
 
 
 def heuristic(r: Review) -> tuple[float, list[str]]:
@@ -143,7 +119,7 @@ def score_reviews(reviews: list[Review]) -> dict[str, SpamResult]:
         out.score = max(out.score, h * 0.8)
         out.reasons += hr
         if r.author and authors[r.author] >= 4:
-            out.score = max(out.score, 0.65)
+            out.score = max(out.score, 0.75)
             out.reasons.append(f"same author posted {authors[r.author]} reviews")
         res[r.id] = out
     return res
